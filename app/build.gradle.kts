@@ -23,7 +23,7 @@ android {
         create("release") {
             val ksFile = System.getenv("SIGNING_KEYSTORE_PATH")
             if (ksFile != null) {
-                storeFile = file(ksFile)
+                storeFile = rootProject.file(ksFile)
                 storePassword = System.getenv("SIGNING_STORE_PASSWORD")
                 keyAlias = System.getenv("SIGNING_KEY_ALIAS")
                 keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
