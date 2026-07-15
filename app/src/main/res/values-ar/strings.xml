@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">عدن تويت</string>
+    <string name="notification_channel_name">الإشعارات</string>
+    <string name="notification_channel_description">استلم إشعارات فورية</string>
+</resources>

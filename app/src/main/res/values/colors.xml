@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="aden_blue">#1D9BF0</color>
+    <color name="aden_blue_dark">#1A8CD8</color>
+    <color name="like_red">#F91880</color>
+    <color name="retweet_green">#00BA7C</color>
+    <color name="dark_background">#000000</color>
+    <color name="dark_surface">#16181C</color>
+    <color name="dark_surface_variant">#1E2028</color>
+    <color name="dark_on_surface">#E7E9EA</color>
+    <color name="dark_secondary_text">#71767B</color>
+    <color name="dark_divider">#2F3336</color>
+    <color name="light_background">#FFFFFF</color>
+    <color name="light_surface">#F7F9F9</color>
+    <color name="light_on_surface">#0F1419</color>
+    <color name="light_secondary_text">#536471</color>
+    <color name="light_divider">#EFF3F4</color>
+</resources>

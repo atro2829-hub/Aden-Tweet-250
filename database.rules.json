@@ -1,0 +1,140 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        "profile": {
+          ".read": "auth != null",
+          ".write": "auth != null && auth.uid == $uid",
+          ".indexOn": ["username", "displayName"]
+        },
+        "settings": {
+          ".read": "auth != null && auth.uid == $uid",
+          ".write": "auth != null && auth.uid == $uid"
+        }
+      }
+    },
+    "posts": {
+      ".read": "auth != null",
+      ".indexOn": ["createdAt", "authorId"],
+      "$postId": {
+        ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.uid)"
+      }
+    },
+    "likes": {
+      "$postId": {
+        "$uid": {
+          ".read": "auth != null",
+          ".write": "auth != null && auth.uid == $uid"
+        }
+      }
+    },
+    "retweets": {
+      "$postId": {
+        "$uid": {
+          ".read": "auth != null",
+          ".write": "auth != null && auth.uid == $uid"
+        }
+      }
+    },
+    "bookmarks": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid",
+        ".indexOn": ["bookmarkedAt"]
+      }
+    },
+    "comments": {
+      ".read": "auth != null",
+      ".indexOn": ["createdAt"],
+      "$postId": {
+        "$commentId": {
+          ".write": "auth != null"
+        }
+      }
+    },
+    "follows": {
+      "$uid": {
+        ".read": "auth != null",
+        "followers": {
+          ".indexOn": ["followedAt"],
+          "$followerUid": {
+            ".write": "auth != null && auth.uid == $followerUid"
+          }
+        },
+        "following": {
+          ".indexOn": ["followedAt"],
+          "$followingUid": {
+            ".write": "auth != null && auth.uid == $uid"
+          }
+        }
+      }
+    },
+    "conversations": {
+      ".read": "auth != null",
+      ".indexOn": ["createdAt"],
+      "$conversationId": {
+        ".write": "auth != null",
+        ".indexOn": ["createdAt"]
+      }
+    },
+    "messages": {
+      "$conversationId": {
+        ".read": "auth != null",
+        ".indexOn": ["sentAt"],
+        "$messageId": {
+          ".write": "auth != null"
+        }
+      }
+    },
+    "notifications": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null",
+        ".indexOn": ["createdAt"]
+      }
+    },
+    "hashtags": {
+      ".read": "auth != null",
+      ".indexOn": ["postsCount", "trendScore"]
+    },
+    "trends": {
+      ".read": "auth != null",
+      ".indexOn": ["postsCount", "rank", "updatedAt"]
+    },
+    "feeds": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".indexOn": ["addedAt", "score"]
+      }
+    },
+    "blocks": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid"
+      }
+    },
+    "mutes": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid"
+      }
+    },
+    "reports": {
+      ".write": "auth != null",
+      ".read": false
+    },
+    "pinnedPosts": {
+      "$uid": {
+        ".read": true,
+        ".write": "auth != null && auth.uid == $uid"
+      }
+    },
+    "userActivity": {
+      "$uid": {
+        ".read": true,
+        ".write": "auth != null && auth.uid == $uid",
+        ".indexOn": ["lastActive"]
+      }
+    }
+  }
+}

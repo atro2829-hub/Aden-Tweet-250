@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AdenTweet</string>
+    <string name="default_notification_channel_id">aden_tweets_notifications</string>
+    <string name="notification_channel_name">Notifications</string>
+    <string name="notification_channel_description">Receive push notifications</string>
+</resources>
